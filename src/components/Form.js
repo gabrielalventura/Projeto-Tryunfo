@@ -21,10 +21,11 @@ class Form extends React.Component {
     return (
       <div>
         <form>
-          <label htmlFor="name">
+          <label htmlFor="nome">
             Nome:
             <input
-              id="name"
+              id="nome"
+              name="nome"
               type="text"
               data-testid="name-input"
               value={ cardName }
@@ -43,11 +44,11 @@ class Form extends React.Component {
             />
           </label>
 
-          <label htmlFor="number">
+          <label htmlFor="number1">
             Attr01
             <input
-              id="number"
-              name="number"
+              id="number1"
+              name="number1"
               type="number"
               data-testid="attr1-input"
               value={ cardAttr1 }
@@ -106,11 +107,11 @@ class Form extends React.Component {
             </select>
           </label>
 
-          <label htmlFor="super-trunfo">
+          <label htmlFor="trunfo">
             Super Trybe Trunfo
             <input
-              id="super-trunfo"
-              name="super-trunfo"
+              id="trunfo"
+              name="trunfo"
               type="checkbox"
               data-testid="trunfo-input"
               checked={ cardTrunfo }
