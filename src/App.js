@@ -10,7 +10,7 @@ const initialState = {
   number3: '',
   photo: '',
   select: 'normal',
-  trunfo: '',
+  trunfo: 'false',
   alreadySaved: [],
 };
 
@@ -86,9 +86,15 @@ class App extends React.Component {
       number3: '0',
       photo: '',
       select: 'normal',
+      trunfo: '',
       alreadySaved: [...lastState.alreadySaved, newCard],
     }));
   };
+
+  verifyTrunfo = () => {
+    const { alreadySaved } = this.state;
+    return alreadySaved.some((card) => card.trunfo);
+  }; // função desenvolvida com auxilio da Mentoria do João Andrade resolvendo dúvida do colega William Afonso que possuia duvida similar a minha com a renderização condicional
 
   render() {
     const {
@@ -117,6 +123,7 @@ class App extends React.Component {
           isSaveButtonDisabled={ this.validateAttributes() }
           onInputChange={ this.handleChange }
           onSaveButtonClick={ this.validateSaveButton }
+          hasTrunfo={ this.verifyTrunfo() }
         />
         <Card
           cardName={ nome }
