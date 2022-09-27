@@ -11,6 +11,7 @@ const initialState = {
   photo: '',
   select: 'normal',
   trunfo: '',
+  alreadySaved: [],
 };
 
 class App extends React.Component {
@@ -61,6 +62,34 @@ class App extends React.Component {
     return (totalSum > maxSum);
   };
 
+  validateSaveButton = (event) => {
+    event.preventDefault();
+
+    this.state = initialState;
+
+    const newCard = {
+      nome,
+      description,
+      number1,
+      number2,
+      number3,
+      photo,
+      select,
+      trunfo,
+    };
+
+    this.setState((lastState) => ({
+      nome: '',
+      description: '',
+      number1: '0',
+      number2: '0',
+      number3: '0',
+      photo: '',
+      select: 'normal',
+      alreadySaved: [...lastState.alreadySaved, newCard],
+    }));
+  };
+
   render() {
     const {
       nome,
@@ -87,7 +116,7 @@ class App extends React.Component {
           cardTrunfo={ trunfo }
           isSaveButtonDisabled={ this.validateAttributes() }
           onInputChange={ this.handleChange }
-          onSaveButtonClick=""
+          onSaveButtonClick={ this.validateSaveButton }
         />
         <Card
           cardName={ nome }
