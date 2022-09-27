@@ -9,7 +9,7 @@ const initialState = {
   number2: '',
   number3: '',
   photo: '',
-  select: '',
+  select: 'normal',
   trunfo: '',
 };
 
