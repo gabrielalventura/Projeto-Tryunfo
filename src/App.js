@@ -11,7 +11,6 @@ const initialState = {
   photo: '',
   select: 'normal',
   trunfo: '',
-  saveButton: true,
 };
 
 class App extends React.Component {
