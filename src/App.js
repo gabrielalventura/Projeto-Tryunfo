@@ -11,6 +11,7 @@ const initialState = {
   photo: '',
   select: 'normal',
   trunfo: '',
+  saveButton: true,
 };
 
 class App extends React.Component {
@@ -28,37 +29,37 @@ class App extends React.Component {
     });
   };
 
-  isSaveButtonDisabled = () => {
+  validateAttributes = () => {
     const {
       nome,
       description,
+      photo,
+      select,
       number1,
       number2,
       number3,
-      photo,
-      select,
     } = this.state;
-    const uniqueAttr = 90;
-    const maxPower = 210;
-    const validateName = nome.length > 0;
-    const validateDescription = description.length > 0;
-    const validateImage = photo.length > 0;
-    const validateSelect = select.length > 0;
-    const maxSum = parseFloat(number1) + parseFloat(number2)
-      + parseFloat(number3) <= maxPower;
-    const validate1 = parseFloat(number1) >= 0 && parseFloat(number1) <= uniqueAttr;
-    const validate2 = parseFloat(number2) >= 0 && parseFloat(number2) <= uniqueAttr;
-    const validate3 = parseFloat(number3) >= 0 && parseFloat(number3) <= uniqueAttr;
-    return (
-      validateName
-      && validateDescription
-      && validateImage
-      && validateSelect
-      && validate1
-      && validate2
-      && validate3
-      && maxSum
-    );
+
+    const maxPower = 90;
+    const maxSum = 210;
+    const attr1 = parseFloat(number1);
+    const attr2 = parseFloat(number2);
+    const attr3 = parseFloat(number3);
+    const totalSum = attr1 + attr2 + attr3;
+
+    if (nome.length <= 0 || description.length <= 0
+      || select.length <= 0 || photo.length <= 0) {
+      return true;
+    }
+
+    if (attr1 < 0 || attr2 < 0 || attr3 < 0) {
+      return true;
+    }
+
+    if (attr1 > maxPower || attr2 > maxPower || attr3 > maxPower) {
+      return true;
+    }
+    return (totalSum > maxSum);
   };
 
   render() {
@@ -85,7 +86,7 @@ class App extends React.Component {
           cardImage={ photo }
           cardRare={ select }
           cardTrunfo={ trunfo }
-          isSaveButtonDisabled={ this.isSaveButtonDisabled }
+          isSaveButtonDisabled={ this.validateAttributes() }
           onInputChange={ this.handleChange }
           onSaveButtonClick=""
         />
