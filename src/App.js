@@ -10,7 +10,7 @@ const initialState = {
   number3: '',
   photo: '',
   select: 'normal',
-  trunfo: 'false',
+  trunfo: '',
   alreadySaved: [],
 };
 
