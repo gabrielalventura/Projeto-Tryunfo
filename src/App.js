@@ -10,7 +10,7 @@ const initialState = {
   number3: '',
   photo: '',
   select: 'normal',
-  trunfo: '',
+  trunfo: false,
   alreadySaved: [],
 };
 
@@ -65,7 +65,16 @@ class App extends React.Component {
   validateSaveButton = (event) => {
     event.preventDefault();
 
-    this.state = initialState;
+    const {
+      nome,
+      description,
+      number1,
+      number2,
+      number3,
+      photo,
+      select,
+      trunfo,
+    } = this.state;
 
     const newCard = {
       nome,
@@ -86,7 +95,7 @@ class App extends React.Component {
       number3: '0',
       photo: '',
       select: 'normal',
-      trunfo: '',
+      trunfo: false,
       alreadySaved: [...lastState.alreadySaved, newCard],
     }));
   };
@@ -106,6 +115,7 @@ class App extends React.Component {
       photo,
       select,
       trunfo,
+      alreadySaved,
     } = this.state;
 
     return (
@@ -135,6 +145,26 @@ class App extends React.Component {
           cardRare={ select }
           cardTrunfo={ trunfo }
         />
+        <div>
+          <ul>
+            {alreadySaved.map((card) => (
+              <li
+                key={ card.nome }
+              >
+                <Card
+                  cardName={ card.nome }
+                  cardDescription={ card.description }
+                  cardImage={ card.photo }
+                  cardAttr1={ card.number1 }
+                  cardAttr2={ card.number2 }
+                  cardAttr3={ card.number3 }
+                  cardRare={ card.select }
+                  cardTrunfo={ card.trunfo }
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }
