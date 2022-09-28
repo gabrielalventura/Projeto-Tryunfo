@@ -105,6 +105,14 @@ class App extends React.Component {
     return alreadySaved.some((card) => card.trunfo);
   }; // função desenvolvida com auxilio da Mentoria do João Andrade resolvendo dúvida do colega William Afonso que possuia duvida similar a minha com a renderização condicional
 
+  excludeCard = ({ target }) => {
+    const { alreadySaved } = this.state;
+    const exclude = alreadySaved.filter((card) => card.nome !== target.id);
+    this.setState({
+      alreadySaved: exclude,
+    });
+  };
+
   render() {
     const {
       nome,
@@ -161,6 +169,16 @@ class App extends React.Component {
                   cardRare={ card.select }
                   cardTrunfo={ card.trunfo }
                 />
+                <button
+                  data-testid="delete-button"
+                  type="button"
+                  id={ card.nome }
+                  name="exclude-button"
+                  onClick={ this.excludeCard }
+                >
+                  Excluir
+
+                </button>
               </li>
             ))}
           </ul>
