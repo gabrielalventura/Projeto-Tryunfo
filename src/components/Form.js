@@ -133,6 +133,15 @@ class Form extends React.Component {
             Salvar
           </button>
 
+          <input 
+          id="filterName"
+          name="filterName"
+          type="text"
+          data-testid="name-filter"
+          placeholder='Busque pelo nome'
+          onChange={  }
+          />
+
         </form>
       </div>
     );
